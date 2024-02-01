@@ -15,16 +15,6 @@
 
 App app;*/
 
-struct Bombardier{
-    int x;
-    int y;
-    int dx;
-    int dy;
-    int health;
-    //SDL_Texture* texture;
-    //struct Bombardier* next;
-};
-
 #define FPS 30
 #define FRAME_TARGET_TIME (1000 / FPS)
 
@@ -47,12 +37,6 @@ int main(int argc, char *argv[])
 
     SDL_Texture* enemyTexture = loadtexture("craft.png"); 
 
-    //bombardier->texture = enemyTexture;
-
-    struct bombardier bober;
-    bober.x;
-
-
 	while (1)
 	{
 		prepareScene();
@@ -64,15 +48,23 @@ int main(int argc, char *argv[])
 
         if(app.up){
             player.y -=4;
+            if(player.y <= 0)
+                player.y +=4;
         }
         if(app.down){
             player.y +=4;
+            if(player.y >= 660)
+                player.y -=4;
         }
         if(app.left){
             player.x -=4;
+            if(player.x <= 0)
+                player.x +=4;
         }
         if(app.right){
             player.x +=4;
+            if(player.x >= 1181)
+                player.x -=4;
         }
         if(app.fire && bullet.health==0){
             bullet.x = player.x;
